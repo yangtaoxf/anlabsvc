@@ -1,0 +1,12 @@
+
+target/classes/application.properties
+target/classes/com/poto/anlab/AnlabApplication.class
+target/classes/com/poto/anlab/controller/UserController.class
+target/classes/com/poto/anlab/dao/UserDao.class
+target/classes/com/poto/anlab/model/User.class
+target/classes/mapper/UserMapper.xml
+.idea/anlabsvc.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml

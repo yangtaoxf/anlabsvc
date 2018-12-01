@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.anlab.mapper.AnlabUserMapper">
-    <select id="findAll" resultType="user">
-        select * from t_user
+    <resultMap id="userResultMap" type="com.poto.anlab.model.User">
+        <result property="user_id" column="user_id" jdbcType="BIGINT" />
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findAll" resultMap="userResultMap">
+        select user_id,user_name from t_user
     </select>
 </mapper>

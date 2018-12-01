@@ -1,16 +1,25 @@
 package com.poto.anlab.model;
 
 public class User {
+    private int userId;
     private String user_name;
-    private int user_id;
+
 
     public User(){
 
     }
 
-    public User(int user_id,String user_name) {
+    public User(int userId, String user_name) {
+        this.userId = userId;
         this.user_name = user_name;
-        this.user_id = user_id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUser_name() {
@@ -19,13 +28,5 @@ public class User {
 
     public void setUser_name(String user_name) {
         this.user_name = user_name;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 }
