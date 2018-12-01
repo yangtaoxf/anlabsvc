@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.poto.anlab.dao")
+@MapperScan("com.poto.anlab.mapper")
 public class AnlabApplication {
 
     public static void main(String[] args) {

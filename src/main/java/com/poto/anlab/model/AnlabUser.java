@@ -1,15 +1,15 @@
 package com.poto.anlab.model;
 
-public class User {
+public class AnlabUser {
     private int userId;
     private String userName;
 
 
-    public User(){
+    public AnlabUser(){
 
     }
 
-    public User(int userId, String userName) {
+    public AnlabUser(int userId, String userName) {
         this.userId = userId;
         this.userName = userName;
     }
