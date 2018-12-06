@@ -1,21 +1,20 @@
 package com.poto.anlab.model;
 
+import java.util.List;
 import java.util.Objects;
 
-public class Product {
+public class ProductVO {
     private int productId;
     private String productName;
     private String productDesc;
-    private String imageOriginName;
-    private String imageNewName;
-    private String imagePath;
     private int manufacturerId;
     private String manufacturerCnName;
     private String manufacturerEnName;
     private int categoryId;
     private String categoryCnName;
     private String categoryEnName;
-    public Product() {
+    private List<ProductImageVO> productImageVOList;
+    public ProductVO() {
     }
 
     public int getProductId() {
@@ -42,28 +41,12 @@ public class Product {
         this.productDesc = productDesc;
     }
 
-    public String getImageOriginName() {
-        return imageOriginName;
+    public List<ProductImageVO> getProductImageVOList() {
+        return productImageVOList;
     }
 
-    public void setImageOriginName(String imageOriginName) {
-        this.imageOriginName = imageOriginName;
-    }
-
-    public String getImageNewName() {
-        return imageNewName;
-    }
-
-    public void setImageNewName(String imageNewName) {
-        this.imageNewName = imageNewName;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
+    public void setProductImageVOList(List<ProductImageVO> productImageVOList) {
+        this.productImageVOList = productImageVOList;
     }
 
     public int getManufacturerId() {
@@ -118,7 +101,7 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
+        ProductVO product = (ProductVO) o;
         return productId == product.productId;
     }
 

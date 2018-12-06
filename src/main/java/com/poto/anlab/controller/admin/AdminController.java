@@ -3,15 +3,13 @@ package com.poto.anlab.controller.admin;
 import com.poto.anlab.model.Category;
 import com.poto.anlab.model.GenericResult;
 import com.poto.anlab.service.CategoryService;
+import com.poto.anlab.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -21,6 +19,8 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ProductService productService;
 
     @RequestMapping("/index")
     public String greeting() {
@@ -66,17 +66,9 @@ public class AdminController {
 
     @RequestMapping(value = "/addProduct",method = RequestMethod.POST)
     @ResponseBody
-    public GenericResult teset(@RequestParam("files") MultipartFile[] files,String productName,String productDesc) {
-        for (MultipartFile file: files) {
-            try {
-                file.transferTo(new File("d:\\a.jpg"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+    public GenericResult addProduct(@RequestParam("files") MultipartFile[] files,String productName,String productDesc,int categoryId,int manufacturerId) {
+        productService.addProduct(files,productName,productDesc,categoryId,manufacturerId);
+        return GenericResult.getSuccess();
     }
-
-
 
 }

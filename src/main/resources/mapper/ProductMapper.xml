@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poto.anlab.mapper.ProductMapper">
+
+    <resultMap id="productResultMap" type="com.poto.anlab.model.Product">
+        <result property="productId" column="id"  />
+        <result property="productName" column="product_name" />
+        <result property="productDesc" column="product_desc" />
+
+        <result property="imageOriginName" column="image_origin_name"  />
+        <result property="imageNewName" column="image_new_name" />
+        <result property="imagePath" column="image_path" />
+
+        <result property="manufacturerId" column="manufacturer_id"  />
+        <result property="manufacturerCnName" column="manufacturer_cn_name" />
+        <result property="manufacturerEnName" column="manufacturer_en_name" />
+
+        <result property="categoryId" column="category_id"  />
+        <result property="categoryCnName" column="category_cn_name" />
+        <result property="categoryEnName" column="category_en_name" />
+
+    </resultMap>
+    <select id="loadAll" resultMap="productResultMap">
+        select
+        a.id product_id,
+        a.product_name,
+        a.product_desc,
+        b.image_origin_name,
+        b.image_new_name,
+        b.image_path ,
+        c.manufacturer_id,
+        d.cnName manufacturer_cn_name,
+        d.enName manufacturer_en_name,
+        f.id category_id,
+        f.cn_name category_cn_name,
+        f.en_name category_en_name
+        from t_product a
+        inner join t_product_image b on a.id = b.product_id
+        inner join t_product_manufacturer c on c.product_id = a.id
+        inner join t_manufacturer d on d.id = c.manufacturer_id
+        inner join t_product_category e on e.product_id = a.id
+        inner join t_category f on e.category_id = f.id
+        order by product_id asc
+    </select>
+
+
+    <insert id="addProduct">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="productId" keyColumn="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into t_product(product_name,product_desc)
+        values(#{productName},#{productDesc})
+    </insert>
+
+    <insert id="addProductImage">
+        insert into t_product_image(product_id,image_origin_name,image_new_name,image_path)
+        values(#{productId},#{originalName},#{newName}),#{path}
+    </insert>
+
+    <insert id="addProductManufacturer">
+        insert into t_product_manufacturer(product_id,manufacturer_id)
+        values(#{productId},#{manufacturerId})
+    </insert>
+
+    <insert id="addProductCategory">
+        insert into t_product_category(product_id,category_id)
+        values(#{productId},#{categoryId})
+    </insert>
+
+</mapper>

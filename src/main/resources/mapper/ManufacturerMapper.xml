@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poto.anlab.mapper.ManufacturerMapper">
+
+    <resultMap id="manufacturerResultMap" type="com.poto.anlab.model.Manufacturer">
+        <result property="id" column="id"  />
+        <result property="cnName" column="cn_name" />
+        <result property="enName" column="en_name" />
+    </resultMap>
+    <select id="getAll" resultMap="manufacturerResultMap">
+        select * from t_manufacturer
+    </select>
+
+    <insert id="add">
+        insert into t_manufacturer(cn_name,en_name)
+        values(#{cnName},#{enName})
+    </insert>
+
+    <delete id="delete">
+        delete from t_manufacturer where id=#{id}
+    </delete>
+
+    <update id="update">
+        update t_manufacturer set cn_name=#{cnName},en_name=#{enName}
+        where id=#{id}
+    </update>
+</mapper>
