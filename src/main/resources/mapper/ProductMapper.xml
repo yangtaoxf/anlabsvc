@@ -31,8 +31,8 @@
         b.image_new_name,
         b.image_path ,
         c.manufacturer_id,
-        d.cnName manufacturer_cn_name,
-        d.enName manufacturer_en_name,
+        d.cn_name manufacturer_cn_name,
+        d.en_name manufacturer_en_name,
         f.id category_id,
         f.cn_name category_cn_name,
         f.en_name category_en_name
@@ -56,7 +56,7 @@
 
     <insert id="addProductImage">
         insert into t_product_image(product_id,image_origin_name,image_new_name,image_path)
-        values(#{productId},#{originalName},#{newName}),#{path}
+        values(#{productId},#{originalName},#{newName},#{path})
     </insert>
 
     <insert id="addProductManufacturer">
