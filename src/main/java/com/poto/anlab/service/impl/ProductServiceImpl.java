@@ -40,12 +40,9 @@ public class ProductServiceImpl implements ProductService {
                     });
 
 
-
-
-    @Override
-    public List<ProductVO> loadAll(){
+    private List<ProductVO> loadAll(){
         try {
-            return cacheLoader.get("ALL_KEY");
+            return cacheLoader.get(ALL_KEY);
         } catch (ExecutionException e) {
             e.printStackTrace();
             return Lists.newArrayList();
@@ -100,8 +97,6 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductVO> findByManufacturer(List<Integer> manufacturerIdList){
         return loadAll().stream().filter(productVO -> manufacturerIdList.contains(productVO.getManufacturerId())).collect(Collectors.toList());
     }
-
-
 
 
     @Override

@@ -10,7 +10,7 @@ public interface ProductMapper {
 
     int addProduct(Product product);
 
-    void addProductImage(int productId,String originalName,String newName,String path);
+    void addProductImage(@Param("productId") int productId,@Param("originalName") String originalName,@Param("newName") String newName,@Param("path") String path);
 
     void addProductCategory(@Param("productId") int productId,@Param("categoryId") int categoryId);
 
