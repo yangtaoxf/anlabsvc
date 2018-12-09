@@ -1,12 +1,7 @@
 package com.poto.anlab.controller.admin;
 
-import com.poto.anlab.model.Category;
-import com.poto.anlab.model.GenericResult;
-import com.poto.anlab.model.Manufacturer;
-import com.poto.anlab.model.ProductVO;
-import com.poto.anlab.service.CategoryService;
-import com.poto.anlab.service.ManufacturerService;
-import com.poto.anlab.service.ProductService;
+import com.poto.anlab.model.*;
+import com.poto.anlab.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +19,10 @@ public class AdminController {
     private ProductService productService;
     @Autowired
     private ManufacturerService manufacturerService;
+    @Autowired
+    private MailService mailService;
+    @Autowired
+    private CustomerService customerService;
 
     @RequestMapping("/index")
     public String greeting() {
@@ -111,5 +110,40 @@ public class AdminController {
         List<ProductVO> allProducts = productService.loadAllProducts();
         return GenericResult.getSuccess();
     }
+
+    @RequestMapping(value = "/sendEmail",method = RequestMethod.GET)
+    @ResponseBody
+    public GenericResult sendEmail() {
+        mailService.sendTemplateMail();
+        //mailService.sendHtmlEmail("",null,null,"","",false);
+        return GenericResult.getSuccess();
+    }
+
+    @RequestMapping("/allCustomer")
+    public String allCustomer(Model model) {
+        List<Manufacturer> categoryList = manufacturerService.getAll();
+        model.addAttribute("manufacturers",categoryList);
+        return "admin/allManufacturer";
+    }
+
+    @RequestMapping(value = "/andOrUpdateCustomer",method = RequestMethod.POST)
+    @ResponseBody
+    public GenericResult andOrUpdateManufacturer(@RequestBody Customer customer) {
+        if(customer.getId() == 0){
+            customerService.add(customer);
+        }else{
+            customerService.update(customer);
+        }
+        return GenericResult.getSuccess();
+    }
+
+    @RequestMapping(value = "/deleteCustomer",method = RequestMethod.GET)
+    @ResponseBody
+    public GenericResult deleteCustomer(@RequestParam("id") int id) {
+        customerService.delete(id);
+        return GenericResult.getSuccess();
+    }
+
+
 
 }

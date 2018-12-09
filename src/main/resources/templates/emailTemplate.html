@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr th:each="cate : ${categories}" >
+        　　<td th:text="${cate.id}"></td>
+        　　<td th:text="${cate.cnName}"></td>
+        　　<td th:text="${cate.enName}"></td>
+        <td class="center"></td>
+        <td><a class="edit" href="javascript:;">Edit</a></td>
+        <td><a class="delete" href="javascript:;">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
