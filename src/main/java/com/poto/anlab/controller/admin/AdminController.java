@@ -29,8 +29,15 @@ public class AdminController {
         return "admin/hello";
     }
 
+    @RequestMapping("/table_edit")
+    public String editTable(Model model) {
+        List<Category> categoryList = categoryService.getAllCategories();
+        model.addAttribute("categories",categoryList);
+        return "admin/table_editable22";
+    }
+
     @RequestMapping("/editTable")
-    public String editTable() {
+    public String editTable22() {
         return "admin/basicTable";
     }
 
@@ -74,7 +81,7 @@ public class AdminController {
     public String allManufacturer(Model model) {
         List<Manufacturer> categoryList = manufacturerService.getAll();
         model.addAttribute("manufacturers",categoryList);
-        return "admin/allManufacturer";
+        return "admin/allManufacturer2";
     }
 
     @RequestMapping(value = "/andOrUpdateManufacturer",method = RequestMethod.POST)

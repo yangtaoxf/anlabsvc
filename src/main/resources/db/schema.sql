@@ -11,3 +11,11 @@ CREATE TABLE t_category (
 	cn_name varchar,
 	en_name varchar
 );
+
+CREATE TABLE T_MANUFACTURER (
+	id int primary key auto_increment,
+	cn_name varchar,
+	en_name varchar
+);
+
+
