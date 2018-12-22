@@ -18,8 +18,8 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[0].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[0] + '">';
-                jqTds[1].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[1] + '">';
+                jqTds[0].innerHTML = '';
+                jqTds[1].innerHTML = '';
                 jqTds[2].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[2] + '">';
                 jqTds[3].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[3] + '">';
                 jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
@@ -157,7 +157,7 @@ var TableEditable = function () {
                     };
                     $.ajax({
                         type: "POST",
-                        url: "updateOrUpdateCategory",
+                        url: "andOrUpdateCategory",
                         contentType: "application/json; charset=utf-8",
                         data: JSON.stringify(json),
                         dataType: "json",

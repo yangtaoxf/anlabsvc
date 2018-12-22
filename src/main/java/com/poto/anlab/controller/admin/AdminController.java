@@ -29,11 +29,11 @@ public class AdminController {
         return "admin/hello";
     }
 
-    @RequestMapping("/table_edit")
+    @RequestMapping("/allCategory")
     public String editTable(Model model) {
         List<Category> categoryList = categoryService.getAllCategories();
         model.addAttribute("categories",categoryList);
-        return "admin/table_editable22";
+        return "admin/allCategory";
     }
 
     @RequestMapping("/editTable")
@@ -41,22 +41,6 @@ public class AdminController {
         return "admin/basicTable";
     }
 
-    @RequestMapping("/allCategory2")
-    public String allCategory(Model model) {
-        List<Category> categoryList = categoryService.getAllCategories();
-        model.addAttribute("categories",categoryList);
-        model.addAttribute("name","myName");
-        return "admin/allCategory2";
-    }
-
-
-    @RequestMapping("/allCategory3")
-    public String allCategory3(Model model) {
-        List<Category> categoryList = categoryService.getAllCategories();
-        model.addAttribute("categories",categoryList);
-        model.addAttribute("name","myName");
-        return "admin/allCategory3";
-    }
 
     @RequestMapping(value = "/andOrUpdateCategory",method = RequestMethod.POST)
     @ResponseBody
