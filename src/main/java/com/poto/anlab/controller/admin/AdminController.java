@@ -36,6 +36,13 @@ public class AdminController {
         return "admin/allCategory";
     }
 
+    @RequestMapping("/allCategoryTree")
+    @ResponseBody
+    public List<CategoryVO> allCategoryTree() {
+        List<CategoryVO> vos =  categoryService.getAllCategoriesTree();
+        return vos;
+    }
+
     @RequestMapping("/editTable")
     public String editTable22() {
         return "admin/basicTable";

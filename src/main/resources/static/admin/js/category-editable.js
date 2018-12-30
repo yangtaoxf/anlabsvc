@@ -18,22 +18,20 @@ var TableEditable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[0].innerHTML = '';
-                jqTds[1].innerHTML = '';
-                jqTds[2].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="m-wrap small" value="' + aData[3] + '">';
-                jqTds[4].innerHTML = '<a class="edit" href="">Save</a>';
-                jqTds[5].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                //jqTds[0].innerHTML = '';
+                jqTds[1].innerHTML = '<input type="text" class="m-wrap large" value="' + aData[1] + '">';
+                jqTds[2].innerHTML = '<input type="text" class="m-wrap large" value="' + aData[2] + '">';
+                jqTds[3].innerHTML = '<a class="edit" href="">Save</a>';
+                jqTds[4].innerHTML = '<a class="cancel" href="">Cancel</a>';
             }
 
             function saveRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
-                oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
-                oTable.fnUpdate(jqInputs[1].value, nRow, 1, false);
-                oTable.fnUpdate(jqInputs[2].value, nRow, 2, false);
-                oTable.fnUpdate(jqInputs[3].value, nRow, 3, false);
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 4, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 5, false);
+                //oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);
+                oTable.fnUpdate(jqInputs[0].value, nRow, 1, false);
+                oTable.fnUpdate(jqInputs[1].value, nRow, 2, false);
+                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 3, false);
+                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 4, false);
                 oTable.fnDraw();
             }
 
@@ -48,39 +46,19 @@ var TableEditable = function () {
             }
 
             var oTable = $('#sample_editable_1').dataTable({
-                "aLengthMenu": [
-                    [20, 50, 100, -1],
-                    [20, 50, 100, "All"] // change per page values here
-                ],
-                // set the initial value
-                "iDisplayLength": 50,
-                "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
-                "sPaginationType": "bootstrap",
-                "oLanguage": {
-                    "sLengthMenu": "_MENU_ records per page",
-                    "oPaginate": {
-                        "sPrevious": "Prev",
-                        "sNext": "Next"
-                    }
-                },
-                "aoColumnDefs": [{
-                        'bSortable': false,
-                        'aTargets': [0]
-                    }
-                ]
+
+                "bPaginate": false,
+                "bFilter": false,
+                "bInfo": false
             });
 
             jQuery('#sample_editable_1_wrapper .dataTables_filter input').addClass("m-wrap medium"); // modify table search input
-            jQuery('#sample_editable_1_wrapper .dataTables_length select').addClass("m-wrap small"); // modify table per page dropdown
-            jQuery('#sample_editable_1_wrapper .dataTables_length select').select2({
-                showSearchInput : false //hide search box with special css class
-            }); // initialzie select2 dropdown
-
+            jQuery('#sample_editable_1_wrapper div[class=row-fluid]').css("display","none");
             var nEditing = null;
 
             $('#sample_editable_1_new').click(function (e) {
                 e.preventDefault();
-                var aiNew = oTable.fnAddData(['', '', '', '',
+                var aiNew = oTable.fnAddData(['', '', '',
                         '<a class="edit" href="">Edit</a>', '<a class="cancel" data-mode="new" href="">Cancel</a>'
                 ]);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
@@ -98,9 +76,6 @@ var TableEditable = function () {
 
                 var jqInputs = $('td', nRow);
                 var id = jqInputs[0].innerText;
-                var json = {
-                    "id": id
-                };
                 $.ajax({
                     type: "GET",
                     url: "deleteCategory",
@@ -163,7 +138,7 @@ var TableEditable = function () {
                         dataType: "json",
                         success: function (data) {
                             if (data.success == true) {
-
+                                window.location.reload();
                             } else if (data.success == false) {
                                 alert("failed")
 

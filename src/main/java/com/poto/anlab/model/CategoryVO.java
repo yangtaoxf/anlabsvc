@@ -1,17 +1,20 @@
 package com.poto.anlab.model;
 
-public class Category {
+import java.util.List;
+
+public class CategoryVO {
     private int id;
     private String cnName;
     private String enName;
     private String nodeId;
     private String parentNode;
     private int nodeLevel;
+    private List<CategoryVO> subCategoryVOList;
 
-    public Category() {
+    public CategoryVO() {
     }
 
-    public Category(int id, String cnName, String enName,int nodeLevel,String nodeId,String parentNode) {
+    public CategoryVO(int id, String cnName, String enName, int nodeLevel, String nodeId, String parentNode) {
         this.id = id;
         this.cnName = cnName;
         this.enName = enName;
@@ -20,9 +23,14 @@ public class Category {
         this.parentNode = parentNode;
     }
 
-    public  CategoryVO getVO(){
-        return new CategoryVO(id,cnName,enName,nodeLevel,nodeId,parentNode);
+    public List<CategoryVO> getSubCategoryVOList() {
+        return subCategoryVOList;
     }
+
+    public void setSubCategoryVOList(List<CategoryVO> subCategoryVOList) {
+        this.subCategoryVOList = subCategoryVOList;
+    }
+
     public String getNodeId() {
         return nodeId;
     }
@@ -70,5 +78,4 @@ public class Category {
     public void setEnName(String enName) {
         this.enName = enName;
     }
-
 }
