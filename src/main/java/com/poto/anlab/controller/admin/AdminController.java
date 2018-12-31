@@ -75,6 +75,13 @@ public class AdminController {
         return "admin/allManufacturer2";
     }
 
+    @RequestMapping("/getAllManufacturer")
+    @ResponseBody
+    public GenericResult2 getAllManufacturer() {
+        GenericResult2 result2 = new GenericResult2(true,"",manufacturerService.getAll());
+        return result2;
+    }
+
     @RequestMapping(value = "/andOrUpdateManufacturer",method = RequestMethod.POST)
     @ResponseBody
     public GenericResult andOrUpdateManufacturer(@RequestBody  Manufacturer manufacturer) {

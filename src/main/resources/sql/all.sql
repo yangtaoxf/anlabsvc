@@ -57,16 +57,14 @@ insert into t_category (cn_name,en_name,node_id,node_level,parent_node) values (
 
 
 
-Create Table: CREATE TABLE `t_manufacturer` (
+ CREATE TABLE `t_manufacturer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cn_name` varchar(50) DEFAULT NULL,
   `en_name` varchar(50) DEFAULT NULL,
-  `logo_path` varchar(100) DEFAULT NULL
+  `logo_path` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
-
-
 insert into t_manufacturer (cn_name,en_name) values ('Thermo Fisher','Thermo Fisher');
 insert into t_manufacturer (cn_name,en_name) values ('SHIMADZU','SHIMADZU');
 insert into t_manufacturer (cn_name,en_name) values ('BRUKER','BRUKER');
