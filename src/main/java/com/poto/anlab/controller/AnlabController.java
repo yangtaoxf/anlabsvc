@@ -1,11 +1,15 @@
 package com.poto.anlab.controller;
 
 import com.poto.anlab.model.AnlabUser;
+import com.poto.anlab.model.GenericResult2;
+import com.poto.anlab.service.EApplicationService;
+import com.poto.anlab.service.ManufacturerService;
 import com.poto.anlab.service.UserService;
 import com.poto.anlab.utils.VerifyCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,10 +22,16 @@ import java.time.ZoneId;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/client/users")
+@RequestMapping(value = "/api/1.0")
 public class AnlabController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private ManufacturerService manufacturerService;
+
+    @Autowired
+    private EApplicationService eApplicationService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<AnlabUser> findAllUsers() {
@@ -80,6 +90,21 @@ public class AnlabController {
             session.removeAttribute("verCode");
             return "200";
         }
+    }
+
+
+    @RequestMapping("/getAllManufacturer")
+    @ResponseBody
+    public GenericResult2 getAllManufacturer() {
+        GenericResult2 result2 = new GenericResult2(true,"",manufacturerService.getAll());
+        return result2;
+    }
+
+    @RequestMapping("/getAllApplication")
+    @ResponseBody
+    public GenericResult2 getAllApplication() {
+        GenericResult2 result2 = new GenericResult2(true,"",eApplicationService.getAllApplications());
+        return result2;
     }
 
 }

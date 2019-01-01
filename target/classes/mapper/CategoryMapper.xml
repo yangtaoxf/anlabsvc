@@ -8,6 +8,9 @@
         <result property="id" column="id"  />
         <result property="cnName" column="cn_name" />
         <result property="enName" column="en_name" />
+        <result property="nodeLevel" column="node_level" />
+        <result property="nodeId" column="node_id" />
+        <result property="parentNode" column="parent_node" />
     </resultMap>
     <select id="getAllCategories" resultMap="categoryResultMap">
         select * from t_category

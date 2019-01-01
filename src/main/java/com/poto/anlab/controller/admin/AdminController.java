@@ -39,8 +39,7 @@ public class AdminController {
     @RequestMapping("/allCategoryTree")
     @ResponseBody
     public List<CategoryVO> allCategoryTree() {
-        List<CategoryVO> vos =  categoryService.getAllCategoriesTree();
-        return vos;
+        return categoryService.getAllCategoriesTree();
     }
 
     @RequestMapping("/editTable")
@@ -75,12 +74,6 @@ public class AdminController {
         return "admin/allManufacturer2";
     }
 
-    @RequestMapping("/getAllManufacturer")
-    @ResponseBody
-    public GenericResult2 getAllManufacturer() {
-        GenericResult2 result2 = new GenericResult2(true,"",manufacturerService.getAll());
-        return result2;
-    }
 
     @RequestMapping(value = "/andOrUpdateManufacturer",method = RequestMethod.POST)
     @ResponseBody
